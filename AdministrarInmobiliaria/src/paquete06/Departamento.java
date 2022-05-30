@@ -5,10 +5,24 @@
  */
 package paquete06;
 
+import paquete02.Propietario;
+import paquete03.Barrio;
+import paquete04.Ciudad;
+import paquete05.Constructora;
+
 /**
  *
  * @author reroes
  */
 public class Departamento {
-    
+
+    private Propietario pr;
+    private double p_m2;
+    private double n_m2;
+    private double al;
+    private Barrio bar;
+    private Ciudad c;
+    private String n_ed;
+    private String ubi;
+    private Constructora cons;
 }
