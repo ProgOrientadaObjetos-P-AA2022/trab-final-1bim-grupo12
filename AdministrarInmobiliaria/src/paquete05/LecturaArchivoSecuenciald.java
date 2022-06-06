@@ -1,4 +1,3 @@
-
 package paquete05;
 
 import java.io.EOFException;
@@ -14,6 +13,8 @@ public class LecturaArchivoSecuenciald {
     private ObjectInputStream entrada;
     private ArrayList<Constructora> constructora;
     private String nombreArchivo;
+    private String identificador;
+    private Constructora consBuscado;
 
     public LecturaArchivoSecuenciald(String n) {
         nombreArchivo = n;
@@ -56,6 +57,40 @@ public class LecturaArchivoSecuenciald {
         }
     }
 
+    public void establecerIdentificador(String n) {
+        identificador = n;
+    }
+
+    public void establecerConstructoraBuscado() {
+        // 
+
+        File f = new File(obtenerNombreArchivo());
+        if (f.exists()) {
+
+            while (true) {
+                try {
+                    Constructora registro = (Constructora) entrada.readObject();
+
+                    if (registro.obtenerNom().equals(identificador)) {
+                        consBuscado = registro;
+                        break;
+                    }
+
+                } catch (EOFException endOfFileException) {
+                    return;
+
+                } catch (IOException ex) {
+                    System.err.println("Error al leer el archivo: " + ex);
+                } catch (ClassNotFoundException ex) {
+                    System.err.println("No se pudo crear el objeto: " + ex);
+                } catch (Exception ex) {
+                    System.err.println("No hay datos en el archivo: " + ex);
+
+                }
+            }
+        }
+    }
+
     public ArrayList<Constructora> obtenerConstructora() {
         return constructora;
     }
@@ -64,9 +99,17 @@ public class LecturaArchivoSecuenciald {
         return nombreArchivo;
     }
 
+    public String obtenerIdentificador() {
+        return identificador;
+    }
+
+    public Constructora obtenerConstructoraBuscado() {
+        return consBuscado;
+    }
+
     @Override
     public String toString() {
-        String cadena = "Lista de Constructora\n";
+        String cadena = "Lista de Constructoras\n";
         for (int i = 0; i < obtenerConstructora().size(); i++) {
             Constructora p = obtenerConstructora().get(i);
             cadena = String.format("%s(%d) %s-%s\n", cadena,

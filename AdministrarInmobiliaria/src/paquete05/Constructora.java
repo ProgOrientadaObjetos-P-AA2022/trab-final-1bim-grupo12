@@ -1,4 +1,3 @@
-
 package paquete05;
 
 import java.io.Serializable;
@@ -31,5 +30,12 @@ public class Constructora implements Serializable {
 
     public String obtenerId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        String valor = String.format("%s-%s\n", obtenerNom(),
+                obtenerId());
+        return valor;
     }
 }

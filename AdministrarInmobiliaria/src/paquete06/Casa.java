@@ -1,15 +1,12 @@
 package paquete06;
 
+import java.io.Serializable;
 import paquete02.Propietario;
 import paquete03.Barrio;
 import paquete04.Ciudad;
 import paquete05.Constructora;
 
-/**
- *
- * @author reroes
- */
-public class Casa {
+public class Casa implements Serializable {
 
     private Propietario pr;
     private double p_m2;
@@ -94,4 +91,15 @@ public class Casa {
     public Constructora obtenerCons() {
         return cons;
     }
+    @Override
+    public String toString() {
+        String valor = String.format("Propietario: %s\nPrecio por "
+                + "metro cuadrado%.2f\nNúmero de metros cuadrados: %.2f\n"
+                + "Costo Final: %.2f\nBarrio: %s\n Ciudad: %s\n Número "
+                + "de cuartos: %d\nConstructora: %s\n", obtenerProp(), 
+                obtenerPm2(), obtenerNm2(), obtenerCostoF(), obtenerBarr(), 
+                obtenerCdad(), obtenerN_Cuartos(), obtenerCons());
+        return valor;
+    }
+    
 }

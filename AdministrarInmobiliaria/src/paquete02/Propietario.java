@@ -41,4 +41,12 @@ public class Propietario implements Serializable {
     public String obtenerId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        String valor = String.format("%s-%s-s\n", obtenerNom(),
+                obtenerAp(),
+                obtenerId());
+        return valor;
+    }
 }

@@ -19,6 +19,8 @@ public class LecturaArchivoSecuencialc {
     private ObjectInputStream entrada;
     private ArrayList<Ciudad> ciudad;
     private String nombreArchivo;
+    private String identificador;
+    private Ciudad cdBuscado;
 
     public LecturaArchivoSecuencialc(String n) {
         nombreArchivo = n;
@@ -61,12 +63,54 @@ public class LecturaArchivoSecuencialc {
         }
     }
 
+    public void establecerIdentificador(String n) {
+        identificador = n;
+    }
+
+    public void establecerCiudadBuscado() {
+        // 
+
+        File f = new File(obtenerNombreArchivo());
+        if (f.exists()) {
+
+            while (true) {
+                try {
+                    Ciudad registro = (Ciudad) entrada.readObject();
+
+                    if (registro.obtenerNom().equals(identificador)) {
+                        cdBuscado = registro;
+                        break;
+                    }
+
+                } catch (EOFException endOfFileException) {
+                    return;
+
+                } catch (IOException ex) {
+                    System.err.println("Error al leer el archivo: " + ex);
+                } catch (ClassNotFoundException ex) {
+                    System.err.println("No se pudo crear el objeto: " + ex);
+                } catch (Exception ex) {
+                    System.err.println("No hay datos en el archivo: " + ex);
+
+                }
+            }
+        }
+    }
+
     public ArrayList<Ciudad> obtenerCiudad() {
         return ciudad;
     }
 
     public String obtenerNombreArchivo() {
         return nombreArchivo;
+    }
+
+    public String obtenerIdentificador() {
+        return identificador;
+    }
+
+    public Ciudad obtenerCiudadBuscado() {
+        return cdBuscado;
     }
 
     @Override
