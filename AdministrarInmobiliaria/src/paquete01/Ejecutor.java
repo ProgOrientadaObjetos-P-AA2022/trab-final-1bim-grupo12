@@ -107,45 +107,11 @@ public class Ejecutor {
                     = new LecturaArchivoSecuenciald(nombreArchivo);
             lectura.establecerConstructora();
             System.out.println(lectura);
-            System.out.println("¿Desea ingresar otra ciudad ?");
+            System.out.println("¿Desea ingresar otra constructora?");
             String a = entrada.nextLine();
             if (a != "Si" || a != "si") {
                 bandera3 = false;
             }
         }
-        System.out.println("Menú:");
-        int opc;
-        do {
-            System.out.println("Ingresar casas          [1]");
-            System.out.println("Ingresar departamento   [2]");
-            System.out.println("Salir                   [0]");
-            opc = entrada.nextInt();
-            if (opc == 1) {
-                String nombreArchivo = "propietarios.dat";
-                System.out.println("Ingrese el id del propietario:");
-                String a = entrada.nextLine();
-
-                Propietario prop_buscar;
-                EscrituraArchivoSecuencial archivo
-                        = new EscrituraArchivoSecuencial(nombreArchivo);
-
-                LecturaArchivoSecuencial lectura
-                        = new LecturaArchivoSecuencial(nombreArchivo);
-                lectura.establecerIdentificador(a);
-                lectura.establecerPropietarioBuscado();
-                prop_buscar = lectura.obtenerPropietarioBuscado();
-                if (prop_buscar != null) {
-                    System.out.println("Ingrese el precio por metro cuadrado:");
-                    double pr = entrada.nextDouble();
-                    System.out.println("Ingrese el número de metros cuadrados:");
-                    double m2 = entrada.nextDouble();
-                    System.out.println("Ingrese el nombre del barrio ");
-                } else {
-                    System.out.println("Propietario no encontrado");
-                }
-            }
-        } while (opc != 0);
-
     }
-
 }

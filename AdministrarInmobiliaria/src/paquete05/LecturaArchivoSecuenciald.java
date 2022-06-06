@@ -71,7 +71,7 @@ public class LecturaArchivoSecuenciald {
                 try {
                     Constructora registro = (Constructora) entrada.readObject();
 
-                    if (registro.obtenerNom().equals(identificador)) {
+                    if (registro.obtenerId().equals(identificador)) {
                         consBuscado = registro;
                         break;
                     }

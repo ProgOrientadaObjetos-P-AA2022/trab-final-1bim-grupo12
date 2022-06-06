@@ -19,17 +19,17 @@ public class LecturaArchivoSecuencialb {
     private ObjectInputStream entrada;
     private ArrayList<Barrio> barrio;
     private String nombreArchivo;
+    private String identificador;
+    private Barrio barrBuscado;
 
     public LecturaArchivoSecuencialb(String n) {
         nombreArchivo = n;
         File f = new File(nombreArchivo);
         if (f.exists()) {
-            try
-            {
+            try {
                 entrada = new ObjectInputStream(
                         new FileInputStream(n));
-            } 
-            catch (IOException ioException) {
+            } catch (IOException ioException) {
                 System.err.println("Error al abrir el archivo." + ioException);
             }
         }
@@ -49,7 +49,41 @@ public class LecturaArchivoSecuencialb {
                     Barrio registro = (Barrio) entrada.readObject();
                     barrio.add(registro);
                 } catch (EOFException endOfFileException) {
-                    return; 
+                    return;
+
+                } catch (IOException ex) {
+                    System.err.println("Error al leer el archivo: " + ex);
+                } catch (ClassNotFoundException ex) {
+                    System.err.println("No se pudo crear el objeto: " + ex);
+                } catch (Exception ex) {
+                    System.err.println("No hay datos en el archivo: " + ex);
+
+                }
+            }
+        }
+    }
+
+    public void establecerIdentificador(String n) {
+        identificador = n;
+    }
+
+    public void establecerBarrioBuscado() {
+        // 
+
+        File f = new File(obtenerNombreArchivo());
+        if (f.exists()) {
+
+            while (true) {
+                try {
+                    Barrio registro = (Barrio) entrada.readObject();
+
+                    if (registro.obtenerNom().equals(identificador)) {
+                        barrBuscado = registro;
+                        break;
+                    }
+
+                } catch (EOFException endOfFileException) {
+                    return;
 
                 } catch (IOException ex) {
                     System.err.println("Error al leer el archivo: " + ex);
@@ -69,6 +103,14 @@ public class LecturaArchivoSecuencialb {
 
     public String obtenerNombreArchivo() {
         return nombreArchivo;
+    }
+
+    public String obtenerIdentificador() {
+        return identificador;
+    }
+
+    public Barrio obtenerBarrioBuscado() {
+        return barrBuscado;
     }
 
     @Override

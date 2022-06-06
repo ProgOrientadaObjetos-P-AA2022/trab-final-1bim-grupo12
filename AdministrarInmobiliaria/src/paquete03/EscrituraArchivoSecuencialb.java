@@ -24,9 +24,8 @@ public class EscrituraArchivoSecuencialb {
 
     public EscrituraArchivoSecuencialb(String nombreArc) {
         nombreArchivo = nombreArc;
-        establecerListaBarrios(); 
-        try 
-        {
+        establecerListaBarrios();
+        try {
             salida = new ObjectOutputStream(
                     new FileOutputStream(nombreArchivo));
             // proceso para ingresar nuevamente los valores del archivo
@@ -36,10 +35,9 @@ public class EscrituraArchivoSecuencialb {
                     establecerSalida();
                 }
             }
-        } 
-        catch (IOException ioException) {
+        } catch (IOException ioException) {
             System.err.println("Error al abrir el archivo.");
-        } 
+        }
     }
 
     public void establecerNombreArchivo(String n) {
@@ -53,7 +51,7 @@ public class EscrituraArchivoSecuencialb {
     public void establecerSalida() {
         try {
             salida.writeObject(registroBarrio); // envía el registro como 
-            
+
         } catch (IOException ex) {
             System.err.println("Error al escribir en el archivo.");
         }
@@ -84,11 +82,10 @@ public class EscrituraArchivoSecuencialb {
             if (salida != null) {
                 salida.close();
             }
-        }
-        catch (IOException ioException) {
+        } catch (IOException ioException) {
             System.err.println("Error al cerrar el archivo.");
 
-        } 
+        }
     }
 
 }
