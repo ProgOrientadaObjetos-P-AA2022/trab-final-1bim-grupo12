@@ -6,10 +6,6 @@ import paquete03.Barrio;
 import paquete04.Ciudad;
 import paquete05.Constructora;
 
-/**
- *
- * @author reroes
- */
 public class Departamento {
 
     private Propietario pr;

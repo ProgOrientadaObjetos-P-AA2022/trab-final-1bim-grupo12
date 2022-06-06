@@ -1,11 +1,12 @@
-
 package paquete04;
+
+import java.io.Serializable;
 
 /**
  *
  * @author reroes
  */
-public class Ciudad {
+public class Ciudad implements Serializable {
 
     private String nom;
     private String prov;
@@ -29,5 +30,12 @@ public class Ciudad {
 
     public String obtenerProv() {
         return prov;
+    }
+
+    @Override
+    public String toString() {
+        String valor = String.format("%s-%s\n", obtenerNom(),
+                obtenerProv());
+        return valor;
     }
 }

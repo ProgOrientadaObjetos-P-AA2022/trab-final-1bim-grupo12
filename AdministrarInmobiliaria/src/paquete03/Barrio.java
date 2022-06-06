@@ -1,11 +1,12 @@
-
 package paquete03;
+
+import java.io.Serializable;
 
 /**
  *
  * @author reroes
  */
-public class Barrio {
+public class Barrio implements Serializable {
 
     private String nom;
     private String ref;
@@ -29,5 +30,11 @@ public class Barrio {
 
     public String obtenerRef() {
         return ref;
+    }
+
+    @Override
+    public String toString() {
+        String valor = String.format("%s-%s\n", obtenerNom(), obtenerRef());
+        return valor;
     }
 }
